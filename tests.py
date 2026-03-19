@@ -48,15 +48,15 @@ def run_n_times(env: BanditEnv, strategy: Strategy, n_episodes: int,\
 
 
 n_episodes = 100
-n_epoches = 100
+n_epoches = 1000
 
-costs = [5, 7, 8, 5, 1]
+costs = [0.5, 0.7, 0.8, 0.5, 0.1]
 money = 100
 env = BanditEnv([0.3, 0.2, 0.1, 0.2, 0.9], [10, 2, 3, 4, 1], costs)
-# strategy = GreedyRandomChoiceStrategy(n_arms=env.n_arms, n_explores=0, costs=costs, money=money)
-# strategy = EpsilonGreedyStrategy(n_arms=env.n_arms, epsilon=0.00, costs=costs, money=money)
-# strategy = SoftMaxStrategy(n_arms=env.n_arms, alpha=0.05, costs=costs, money=money)
-strategy = UCBStrategy(n_arms=env.n_arms, epsilon=0.05, costs=costs, money=money)
+strategy = GreedyRandomChoiceStrategy(n_arms=env.n_arms, n_explores=30, costs=costs, money=money)
+# strategy = EpsilonGreedyStrategy(n_arms=env.n_arms, epsilon=0.20, costs=costs, money=money)
+# strategy = SoftMaxStrategy(n_arms=env.n_arms, alpha=0.6, costs=costs, money=money)
+# strategy = UCBStrategy(n_arms=env.n_arms, epsilon=10.0, costs=costs, money=money)
 
 actions, rewards, total_reward = run_n_times(env, strategy, n_episodes, n_epoches)
 
